@@ -11,18 +11,11 @@ POST http://localhost:3000/api/moro
 content-type: application/json
 
 {
-  "sender": "Mei",
+  "sender": "kalle",
   "message": "testitervehdys"
 }
 
-### deletesti DELETE
-DELETE http://localhost:3000/api/delete
+## items
 
-### puttesti PUT
-PUT http://localhost:3000/api/put
-content-type: application/json
-
-{
-  "sender": "Mei",
-  "message": "testitervehdys"
-}
+### get all items
+GET http://localhost:3000/api/items

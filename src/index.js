@@ -1,4 +1,5 @@
 import express from 'express';
+import {getItems} from './items.js';
 const hostname = '127.0.0.1';
 const app = express();
 const port = 3000;
@@ -11,10 +12,13 @@ app.use(express.json());
 
 // rest-apin resurssit tarjoillaan /api/-polun alla
 app.get('/api/', (req, res) => {
-  console.log('get-pyyntö juureen havaittu');
+  console.log('get-pyyntö apin juureen havaittu');
   console.log(req.url);
   res.send('Welcome to my REST API!');
 });
+
+// Items resurssin päätepisteet (endpoint)
+app.get('/api/items', getItems);
 
 // syötteen lukeminen reittiparametreista (route params)
 app.get('/api/sum/:num1/:num2', (req, res) => {
@@ -56,24 +60,8 @@ app.post('/api/moro', (req, res) => {
   res.json({reply: 'no Moro ' + req.body.sender});
 });
 
-
-// ensimmäisen viikon harkka tässä
-
-app.delete('/api/delete', (req, res) => {
-  console.log('delete-pyyntö vastaanotettu');
-  res.status(200);
-  res.json({reply: 'poistettu delete-pyynnöllä'});
-});
-
-app.put('/api/put', (req, res) => {
-  console.log('put-pyyntö vastaanotettu');
-  res.status(200);
-  res.json({reply: 'muokattu put-pyynnöllä. Muokkaaja: ' + req.body.sender});
-});
-
-app.use((req, res) => {
-    res.status(404).json({ error: 'Resource not found, 404' });
-  });
+// TODO: lisää oma reitti ja toiminnallisuus omaa mielikuvitusta käyttäen, niin
+// ensimmäisen viikon harkka ok
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);

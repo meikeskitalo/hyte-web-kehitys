@@ -1,3 +1,3 @@
-# Web dev tuntitehtävät
+# Web dev tuntiesimerkit
 
-Mein back-end harjoitukset vk.1
+Opettajan back-end tuntiesimerkkejä.
