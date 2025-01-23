@@ -1,5 +1,5 @@
 import express from 'express';
-import {getItems} from './items.js';
+import {addItem, getItemsById, getItems} from './items.js';
 const hostname = '127.0.0.1';
 const app = express();
 const port = 3000;
@@ -19,6 +19,10 @@ app.get('/api/', (req, res) => {
 
 // Items resurssin päätepisteet (endpoint)
 app.get('/api/items', getItems);
+app.get('/api/items:id', getItemsById);
+app.post('/api/items', addItem);
+
+
 
 // syötteen lukeminen reittiparametreista (route params)
 app.get('/api/sum/:num1/:num2', (req, res) => {

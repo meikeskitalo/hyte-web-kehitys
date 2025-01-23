@@ -11,7 +11,7 @@ POST http://localhost:3000/api/moro
 content-type: application/json
 
 {
-  "sender": "kalle",
+  "sender": "Mei",
   "message": "testitervehdys"
 }
 
@@ -19,3 +19,18 @@ content-type: application/json
 
 ### get all items
 GET http://localhost:3000/api/items
+
+
+### get item by id
+GET http://localhost:3000/api/items/3
+
+
+
+
+### post new item
+POST http://localhost:3000/api/items
+content-type: application/json
+
+{
+  "name": "Sitruuna"
+}
