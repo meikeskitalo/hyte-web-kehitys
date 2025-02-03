@@ -1,7 +1,9 @@
 -- Windows: MySQL Client start-valikko
--- Mysql clinet käynnistys komentorivillä
--- mysql -u root -pSALASANA
+-- Mysql client käynnistys komentoriviltä
+-- mysql -u root -pMUNSALASANA
 
+-- Tämän skriptin suorittaminen (Mein kone) sql clientissa:
+-- source C:\Users\Mei\Documents\Hyte-web-kehitys-vk2\db\db-examples.sql
 
 DROP DATABASE IF EXISTS HealthDiary;
 CREATE DATABASE HealthDiary;
@@ -32,21 +34,22 @@ CREATE TABLE DiaryEntries (
 -- ALTER example, adding a new column to existing table
 ALTER TABLE Users ADD COLUMN user_level VARCHAR(10) DEFAULT 'regular';
 
----------------------------
--- Insert some test data
---------------------------
+-------------------
+-- insert test data
+-------------------
 
 -- Inserting a single record, without specifying column names
-INSERT INTO Users VALUES (1, 'johndoe', 'temp-pw-1', 'johndoe@example.com', '2024-01-02 10:00:00', 'regular');
+INSERT INTO Users
+  VALUES (1, 'johndoe', 'temp-pw-1', 'johndoe@example.com', '2024-01-02 10:00:00', 'regular');
 
 -- Iserting multiple user rows at once (default values like created_at are inserted without need to specify them)
 INSERT INTO Users (username, password, email, user_level) VALUES
   ('janedoe', 'temp-pw-2', 'janedoe@example.com', 'admin'),
   ('mike_smith', 'temp-pw-3', 'mike@example.com', 'moderator');
 
--- Example when FK constraint fails (if user_id 15 does not exist)
+-- Example when FK constraint fails (if user_id 15 does not exist) -> changed to 3
 INSERT INTO DiaryEntries (user_id, entry_date, mood, weight, sleep_hours, notes, created_at) VALUES
-  (15, '2024-01-10', 'Happy', 70.5, 8, 'Had a great day, felt energetic', '2024-01-10 20:00:00');
+  (3, '2024-01-10', 'Happy', 70.5, 8, 'Had a great day, felt energetic', '2024-01-10 20:00:00');
 
 -- Inserting multiple diary entries
 INSERT INTO DiaryEntries (user_id, entry_date, mood, weight, sleep_hours, notes, created_at) VALUES

@@ -24,14 +24,7 @@ const getUsers = (req, res) => {
   res.json(users);
 };
 
-const getUserById = (req, res) => {
-  const user = users.find((user) => user.id == req.params.id);
-  if (user) {
-    res.json(user);
-  } else {
-    res.status(404).json({message: 'User not found.'});
-  }
-};
+// TODO (kotihommia): toteuta ja testaa getUserById()
 
 // käyttäjän lisäys (rekisteröinti)
 const addUser = (req, res) => {
@@ -76,4 +69,4 @@ const login = (req, res) => {
   }
 };
 
-export {getUsers, addUser, login, getUserById};
+export {getUsers, addUser, login};

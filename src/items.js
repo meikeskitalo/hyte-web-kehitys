@@ -69,5 +69,6 @@ const deleteItem = (req, res) => {
   }
 }
 
+// TODO: lisää users.js, ks. materiaali week 2
 
 export {getItems, getItemById, addItem, editItem, deleteItem};
