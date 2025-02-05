@@ -1,6 +1,6 @@
 import express from 'express';
 import {addItem, deleteItem, editItem, getItemById, getItems} from './items.js';
-import {addUser, getUsers, login} from './users.js';
+import {addUser, getUsers, login} from './controllers/user-controller.js';
 import cors from 'cors';
 const hostname = '127.0.0.1';
 const app = express();
@@ -28,6 +28,10 @@ app.get('/api/items/:id', getItemById);
 app.post('/api/items', addItem);
 app.put('/api/items/:id', editItem);
 app.delete('/api/items/:id', deleteItem);
+
+// Users resurssin päätepisteet (end points)
+app.use('/users', getUsers)
+
 
 // Users resurssin päätepisteet
 app.get('/api/users', getUsers);
