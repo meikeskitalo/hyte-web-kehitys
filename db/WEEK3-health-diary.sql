@@ -4,6 +4,9 @@ CREATE DATABASE HealthDiary;
 
 USE HealthDiary;
 
+
+
+
 CREATE TABLE Users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -22,6 +25,19 @@ CREATE TABLE DiaryEntries (
     sleep_hours INT,
     notes TEXT,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+-- WEEK 3 HW NEW TABLE, queries etc for week 3 below
+CREATE TABLE PersonalDetails (
+    detail_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    height DECIMAL(5,2),
+    starting_weight DECIMAL(5,2),
+    date_of_birth DATE NOT NULL,
+    language VARCHAR(50),
+    country VARCHAR(50),
+    updated_on DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
