@@ -25,17 +25,6 @@ CREATE TABLE DiaryEntries (
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
-CREATE TABLE  (
-    medication_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    dosage VARCHAR(50),
-    frequency VARCHAR(50),
-    start_date DATE,
-    end_date DATE,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
-);
-
 CREATE TABLE Medications (
     medication_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -87,15 +76,3 @@ INSERT INTO Exercises (user_id, type, duration, intensity, date) VALUES
 (3, 'Swimming', 60, 'Low', '2024-01-18'),
 (3, 'Yoga', 50, 'Low', '2024-01-18'),
 (1, 'Weight Training', 40, 'High', '2024-01-19');
-
--- update table example
-UPDATE Exercises
-    SET duration = 75
-    WHERE user_id = 3 AND type = 'Yoga';
-
--- delete row example
-DELETE FROM Medications
-    WHERE name = 'Ibuprofen' AND user_id = (SELECT user_id FROM Users WHERE username = 'janedoe');
-
--- query all entries by username example
-SELECT * FROM DiaryEntries WHERE user_id = (SELECT user_id FROM Users WHERE username = 'bob_brown');
