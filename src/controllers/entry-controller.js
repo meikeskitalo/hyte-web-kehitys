@@ -2,11 +2,17 @@ import {insertEntry, selectEntriesByUserId, modifyEntryByEntryIdAndUserId, delet
 
 const postEntry = async (req, res) => {
   // user_id, entry_date, mood, weight, sleep_hours, notes
-  // TODO: add try-catch
-  const newEntry = req.body;
-  newEntry.user_id = req.user.user_id;
-  insertEntry(newEntry);
-  res.status(201).json({message: "Entry added."});
+  try {
+    const newEntry = req.body;
+    newEntry.user_id = req.user.user_id;
+    insertEntry(newEntry);
+    res.status(201).json({message: "Entry added."});
+  }
+  catch (error) {
+    console.error(error.message);
+    res.status(400).json({message: 'DB error: ' + error.message});
+  }
+
 };
 
 const updateEntryById = async (req, res) => {
