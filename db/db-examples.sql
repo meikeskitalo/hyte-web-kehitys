@@ -2,8 +2,8 @@
 -- Mysql client käynnistys komentoriviltä
 -- mysql -u root -pMUNSALASANA
 
--- Tämän skriptin suorittaminen (Mein kone) sql clientissa:
--- source C:\Users\Mei\Documents\Hyte-web-kehitys-vk2\db\db-examples.sql
+-- Tämän skriptin suorittaminen (opettajan kone) sql clientissa:
+-- source /Users/mattpe/code/hyte/server-example-25/db/db-examples.sql
 
 DROP DATABASE IF EXISTS HealthDiary;
 CREATE DATABASE HealthDiary;

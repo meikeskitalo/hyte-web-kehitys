@@ -5,22 +5,22 @@ import {
   editUser,
   getUserById,
   getUsers,
-  login,
+  editUserByUserId
 } from '../controllers/user-controller.js';
+import {authenticateToken} from '../middlewares/authentication.js';
 const userRouter = express.Router();
 
 // all routes to /api/users
 userRouter.route('/')
-  .get(getUsers)
-  .post(addUser);
+  // only logged in user can fetch the user list
+  .get(authenticateToken, getUsers)
+  .post(addUser)
+  .put(authenticateToken, editUserByUserId);
 
 // all routes to /api/users/:id
 userRouter.route('/:id')
   .get(getUserById)
   .put(editUser)
   .delete(deleteUser);
-
-// post to /api/users/login
-userRouter.post('/login', login);
 
 export default userRouter;
