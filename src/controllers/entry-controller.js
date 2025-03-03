@@ -1,40 +1,15 @@
+import { customError } from '../middlewares/error-handler.js';
 import {insertEntry, selectEntriesByUserId, modifyEntryByEntryIdAndUserId, deleteEntryByEntryIdAndUserId} from '../models/entry-model.js';
 
-const postEntry = async (req, res) => {
+const postEntry = async (req, res, next) => {
   // user_id, entry_date, mood, weight, sleep_hours, notes
+  const newEntry = req.body;
+  newEntry.user_id = req.user.user_id;
   try {
-    const newEntry = req.body;
-    newEntry.user_id = req.user.user_id;
-    insertEntry(newEntry);
+    await insertEntry(newEntry);
     res.status(201).json({message: "Entry added."});
-  }
-  catch (error) {
-    console.error(error.message);
-    res.status(400).json({message: 'DB error: ' + error.message});
-  }
-
-};
-
-const updateEntryById = async (req, res) => {
-  const entryId = req.params.id;
-  const userId = req.user.user_id;
-  const updatedEntry = req.body;
-  const result = await modifyEntryByEntryIdAndUserId(entryId, userId, updatedEntry);
-  if (result) {
-    res.json({message: 'Entry updated'});
-  } else {
-    res.status(404).json({message: 'EntryId not found for user'});
-  }
-};
-
-const deleteEntryById = async (req, res) => {
-  const entryId = req.params.id;
-  const userId = req.user.user_id;
-  const result = await deleteEntryByEntryIdAndUserId(entryId, userId);
-  if (result) {
-    res.json({message: 'Entry deleted'});
-  } else {
-    res.status(404).json({message: 'EntryId not found for user'});
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -43,9 +18,38 @@ const deleteEntryById = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-const getEntries = async (req, res) => {
-  const entries = await selectEntriesByUserId(req.user.user_id);
-  res.json(entries);
+const getEntries = async (req, res, next) => {
+  try {
+    const entries = await selectEntriesByUserId(req.user.user_id);
+    res.json(entries);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateEntryById = async (req, res, next) => {
+  const entryId = req.params.id;
+  const userId = req.user.user_id;
+  const updatedEntry = req.body;
+
+  try {
+    const result = await modifyEntryByEntryIdAndUserId(entryId, userId, updatedEntry);
+    res.json({message: 'Entry updated: ' + result});
+  } catch (error) {
+    next(customError('EntryId not found for user: ' + error.message, 404));
+  }
+};
+
+const deleteEntryById = async (req, res, next) => {
+  const entryId = req.params.id;
+  const userId = req.user.user_id;
+
+  try {
+    const result = await deleteEntryByEntryIdAndUserId(entryId, userId);
+    res.json({message: 'Entry deleted: ' + result});
+  } catch (error) {
+    next(customError('EntryId not found for user: ' + error.message, 404));
+  }
 };
 
 export {postEntry, getEntries, updateEntryById, deleteEntryById};

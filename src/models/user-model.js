@@ -40,7 +40,7 @@ const selectUserById = async (userId) => {
  * @returns
  */
 const insertUser = async (user) => {
-  try {
+  // try {
     const [result] = await promisePool.query(
       'INSERT INTO Users (username, password, email) VALUES (?, ?, ?)',
       [user.username, user.password, user.email],
@@ -48,10 +48,10 @@ const insertUser = async (user) => {
     console.log('insertUser', result);
     // return only first item of the result array
     return result.insertId;
-  } catch (error) {
-    console.error(error);
-    throw new Error('database error');
-  }
+  // } catch (error) {
+  //   console.error(error);
+  //   throw new Error('database error');
+  // }
 };
 
 /**
@@ -69,20 +69,6 @@ const selectUserByNameAndPassword = async (username, password) => {
     console.log(rows);
     // return only first item of the result array
     return rows[0];
-  } catch (error) {
-    console.error(error);
-    throw new Error('database error');
-  }
-};
-
-const modifyUserByUserId = async (userId, updatedUser) => {
-  try {
-    const [result] = await promisePool.query(
-      'UPDATE Users SET username=?, password=?, email=? WHERE user_id=?',
-      [updatedUser.username, updatedUser.password, updatedUser.email, userId],
-    );
-    console.log('modifyUserByUserId', result);
-    return result.affectedRows === 1;
   } catch (error) {
     console.error(error);
     throw new Error('database error');
@@ -108,6 +94,22 @@ const selectUserByUsername = async (username) => {
     throw new Error('database error');
   }
 };
+
+const modifyUserByUserId = async (userId, updatedUser) => {
+  try {
+    const [result] = await promisePool.query(
+      'UPDATE Users SET username=?, password=?, email=? WHERE user_id=?',
+      [updatedUser.username, updatedUser.password, updatedUser.email, userId],
+    );
+    console.log('modifyUserByUserId', result);
+    return result.affectedRows === 1;
+  } catch (error) {
+    console.error(error);
+    throw new Error('database error');
+  }
+};
+
+
 
 export {
   selectAllUsers,

@@ -15,6 +15,20 @@ const insertEntry = async (entry) => {
   }
 };
 
+const selectEntriesByUserId = async (userId) => {
+  try {
+    const [rows] = await promisePool.query(
+      'SELECT * FROM DiaryEntries WHERE user_id=?',
+      [userId],
+    );
+    console.log(rows);
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw new Error('database error');
+  }
+};
+
 const modifyEntryByEntryIdAndUserId = async (entryId, userId, entry) => {
   try {
     const [result] = await promisePool.query(
@@ -43,19 +57,5 @@ const deleteEntryByEntryIdAndUserId = async (entryId, userId) =>
     throw new Error('database error');
   }
 }
-
-const selectEntriesByUserId = async (userId) => {
-  try {
-    const [rows] = await promisePool.query(
-      'SELECT * FROM DiaryEntries WHERE user_id=?',
-      [userId],
-    );
-    console.log(rows);
-    return rows;
-  } catch (error) {
-    console.error(error);
-    throw new Error('database error');
-  }
-};
 
 export {insertEntry, selectEntriesByUserId, modifyEntryByEntryIdAndUserId, deleteEntryByEntryIdAndUserId};

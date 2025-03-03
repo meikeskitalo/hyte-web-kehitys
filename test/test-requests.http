@@ -1,33 +1,5 @@
 # Testing http requests with Visual Studio Code REST Client extension
 
-## Items (test resource/endpoints using hard-coded mock data)
-
-### get all items
-GET http://localhost:3000/api/items
-
-### get item by id
-GET http://localhost:3000/api/items/3
-
-### post a new item
-POST http://localhost:3000/api/items
-content-type: application/json
-
-{
-  "name": "Sitruuna"
-}
-
-### modify an existing item (by using item's id as a parameter in url)
-PUT http://localhost:3000/api/items/3
-content-type: application/json
-
-{
-  "name": "new name for this item"
-}
-
-### delete an item (by id)
-DELETE http://localhost:3000/api/items/3
-
-
 ###########################
 ## Users resource endpoints
 
@@ -43,19 +15,20 @@ POST http://localhost:3000/api/users
 content-type: application/json
 
 {
-  "username": "newusername2",
-  "password": "passwordx",
-  "email": "newemail2@example.com"
+  "username": "x345",
+  "password": "x1234567",
+  "email": "xx@example.com"
 }
 
-### modify an existing user by id
-PUT http://localhost:3000/api/users/3
+### modify an existing user
+PUT http://localhost:3000/api/users/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJ1c2VybmFtZSI6IngzNDUiLCJwYXNzd29yZCI6IiQyYSQxMCRSNjVnZHlweWVoWTF1cHRoOEd4czJldDBKUk5iMzFFOVZrallDZHBPcHdYTmdBTFRwbXJLeSIsImVtYWlsIjoieHhAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMy0wM1QxMjoxMjowMy4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDEwMDQyOTUsImV4cCI6MTc0MTA5MDY5NX0.22Bbkp6xDVASow2On2htue9XfWBI_4tIARI0rEV131A
 content-type: application/json
 
 {
-  "username": "editedname",
+  "username": "editedabcd",
   "password": "editedpasswordx",
-  "email": "editedmail@example.com"
+  "email": "editedabcd@example.com"
 }
 
 ### delete a user (by id)
@@ -66,56 +39,35 @@ POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
-  "username": "newusername2",
-  "password": "passwordx"
+  "username": "x345",
+  "password": "x1234567"
 }
 
 ### get my user info
 GET http://localhost:3000/api/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6Im5ld3VzZXJuYW1lMiIsInBhc3N3b3JkIjoiJDJhJDEwJHFmZ1Jja1VvSWl6cjRWNUllTk9JY2VzcTltSkVhOUZSMVBubXZQYnhRNXBhVU4xaW5zRWVXIiwiZW1haWwiOiJuZXdlbWFpbDJAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yM1QxODo0Njo0NC4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDAzMzY4MTgsImV4cCI6MTc0MDQyMzIxOH0.fi-0lKMI5cT3GVEdvWvC4hJNPyhIXp6OIdQdRgOVtiQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJ1c2VybmFtZSI6IngzNDUiLCJwYXNzd29yZCI6IiQyYSQxMCRSNjVnZHlweWVoWTF1cHRoOEd4czJldDBKUk5iMzFFOVZrallDZHBPcHdYTmdBTFRwbXJLeSIsImVtYWlsIjoieHhAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMy0wM1QxMjoxMjowMy4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDEwMDQyOTUsImV4cCI6MTc0MTA5MDY5NX0.22Bbkp6xDVASow2On2htue9XfWBI_4tIARI0rEV131A
+
 ## (Diary)Entries
 
 ### post a new entry
 POST http://localhost:3000/api/entries
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6Im5ld3VzZXJuYW1lMiIsInBhc3N3b3JkIjoiJDJhJDEwJHFmZ1Jja1VvSWl6cjRWNUllTk9JY2VzcTltSkVhOUZSMVBubXZQYnhRNXBhVU4xaW5zRWVXIiwiZW1haWwiOiJuZXdlbWFpbDJAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yM1QxODo0Njo0NC4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDAzMzY4MTgsImV4cCI6MTc0MDQyMzIxOH0.fi-0lKMI5cT3GVEdvWvC4hJNPyhIXp6OIdQdRgOVtiQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJ1c2VybmFtZSI6IngzNDUiLCJwYXNzd29yZCI6IiQyYSQxMCRSNjVnZHlweWVoWTF1cHRoOEd4czJldDBKUk5iMzFFOVZrallDZHBPcHdYTmdBTFRwbXJLeSIsImVtYWlsIjoieHhAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMy0wM1QxMjoxMjowMy4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDEwMDQyOTUsImV4cCI6MTc0MTA5MDY5NX0.22Bbkp6xDVASow2On2htue9XfWBI_4tIARI0rEV131A
 content-type: application/json
 
 {
- "entry_date": "2025-02-12",
+ "entry_date": "2025-03-27",
  "mood": "iloinen",
- "weight": 60,
+ "weight": 68,
  "sleep_hours": 6,
- "notes": "tosi kiva fiilis"
+ "notes": "happy"
 }
 
 ### Get user's entries
 GET http://localhost:3000/api/entries
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6Im5ld3VzZXJuYW1lMiIsInBhc3N3b3JkIjoiJDJhJDEwJHFmZ1Jja1VvSWl6cjRWNUllTk9JY2VzcTltSkVhOUZSMVBubXZQYnhRNXBhVU4xaW5zRWVXIiwiZW1haWwiOiJuZXdlbWFpbDJAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yM1QxODo0Njo0NC4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDAzMzY4MTgsImV4cCI6MTc0MDQyMzIxOH0.fi-0lKMI5cT3GVEdvWvC4hJNPyhIXp6OIdQdRgOVtiQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJ1c2VybmFtZSI6IngzNDUiLCJwYXNzd29yZCI6IiQyYSQxMCRSNjVnZHlweWVoWTF1cHRoOEd4czJldDBKUk5iMzFFOVZrallDZHBPcHdYTmdBTFRwbXJLeSIsImVtYWlsIjoieHhAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMy0wM1QxMjoxMjowMy4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDEwMDQyOTUsImV4cCI6MTc0MTA5MDY5NX0.22Bbkp6xDVASow2On2htue9XfWBI_4tIARI0rEV131A
 
-### modify an existing entry by id
-PUT http://localhost:3000/api/entries/7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6Im5ld3VzZXJuYW1lMiIsInBhc3N3b3JkIjoiJDJhJDEwJHFmZ1Jja1VvSWl6cjRWNUllTk9JY2VzcTltSkVhOUZSMVBubXZQYnhRNXBhVU4xaW5zRWVXIiwiZW1haWwiOiJuZXdlbWFpbDJAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yM1QxODo0Njo0NC4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDAzMzY4MTgsImV4cCI6MTc0MDQyMzIxOH0.fi-0lKMI5cT3GVEdvWvC4hJNPyhIXp6OIdQdRgOVtiQ
-content-type: application/json
 
-{
- "entry_date": "2025-02-12",
- "mood": "iloinen",
- "weight": 60,
- "sleep_hours": 12,
- "notes": "tosi kiva fiilis"
-}
+### Delete user's entry by id
+DELETE http://localhost:3000/api/entries/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJ1c2VybmFtZSI6IngzNDUiLCJwYXNzd29yZCI6IiQyYSQxMCRSNjVnZHlweWVoWTF1cHRoOEd4czJldDBKUk5iMzFFOVZrallDZHBPcHdYTmdBTFRwbXJLeSIsImVtYWlsIjoieHhAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMy0wM1QxMjoxMjowMy4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDEwMDQyOTUsImV4cCI6MTc0MTA5MDY5NX0.22Bbkp6xDVASow2On2htue9XfWBI_4tIARI0rEV131A
 
-### delete an entry (by id)
-DELETE http://localhost:3000/api/entries/6
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6Im5ld3VzZXJuYW1lMiIsInBhc3N3b3JkIjoiJDJhJDEwJHFmZ1Jja1VvSWl6cjRWNUllTk9JY2VzcTltSkVhOUZSMVBubXZQYnhRNXBhVU4xaW5zRWVXIiwiZW1haWwiOiJuZXdlbWFpbDJAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yM1QxODo0Njo0NC4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDAzMzY4MTgsImV4cCI6MTc0MDQyMzIxOH0.fi-0lKMI5cT3GVEdvWvC4hJNPyhIXp6OIdQdRgOVtiQ
-
-### modify an existing userwith token
-PUT http://localhost:3000/api/users/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6Im5ld3VzZXJuYW1lMiIsInBhc3N3b3JkIjoiJDJhJDEwJHFmZ1Jja1VvSWl6cjRWNUllTk9JY2VzcTltSkVhOUZSMVBubXZQYnhRNXBhVU4xaW5zRWVXIiwiZW1haWwiOiJuZXdlbWFpbDJAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yM1QxODo0Njo0NC4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NDAzMzY4MTgsImV4cCI6MTc0MDQyMzIxOH0.fi-0lKMI5cT3GVEdvWvC4hJNPyhIXp6OIdQdRgOVtiQ
-content-type: application/json
-
-{
-  "username": "editedname",
-  "password": "editedpasswordx",
-  "email": "editedmail@example.com"
-}
